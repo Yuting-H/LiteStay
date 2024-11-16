@@ -16,6 +16,15 @@ class main_window : public QMainWindow
 public:
     main_window(QWidget *parent = nullptr);
     ~main_window();
+    void elevate_privilege();
+
+private slots:
+
+    void on_booking_btn_clicked();
+
+    void on_room_btn_clicked();
+
+    void on_staff_btn_clicked();
 
 private:
     Ui::main_window *ui;
