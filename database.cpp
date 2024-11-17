@@ -46,5 +46,44 @@ void database::init_tables(QSqlDatabase db) {
     //create table storing employee information
 
     query.exec("CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, username VARCHAR(20))");
+    insert_data(db, "INSERT INTO employees VALUES(0, 'admin')");
 
+}
+
+/*!
+ * \brief database::insert_data
+ * \param db
+ * \param sql
+ */
+void database::insert_data(QSqlDatabase db, QString sql) {
+
+    QSqlQuery query_insert_data(db);
+
+    //excute sql, if error print error msg
+    if(query_insert_data.exec(sql)) {
+
+    }else {
+        qDebug() << query_insert_data.lastError();
+    }
+}
+
+/*!
+ * \brief database::select_data
+ * \param db
+ * \param sql
+ * \return
+ */
+QSqlQuery database::load_data(QSqlDatabase db, QString sql) {
+
+    //execute sql on db
+    QSqlQuery query_load_data(db);
+
+    //excute sql, if error print error msg
+    if(query_load_data.exec(sql)) {
+
+    }else {
+        qDebug() << query_load_data.lastError();
+    }
+
+    return query_load_data;
 }
