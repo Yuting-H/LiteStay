@@ -8,7 +8,6 @@
  */
 
 //query
-query *q = nullptr;
 login_window::login_window(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::login_window)
