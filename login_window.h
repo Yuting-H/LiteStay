@@ -1,6 +1,6 @@
 #ifndef LOGIN_WINDOW_H
 #define LOGIN_WINDOW_H
-
+#include "query.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -26,6 +26,7 @@ private slots:
 
 private:
     Ui::login_window *ui;
+    query *q;
 };
 
 #endif // LOGIN_WINDOW_H

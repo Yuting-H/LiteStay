@@ -12,7 +12,7 @@ main_window::main_window(QWidget *parent)
 {
     ui->setupUi(this);
     setFixedSize(1024, 578);
-    query *q = new query();
+    q = new query();
 }
 
 main_window::~main_window()
