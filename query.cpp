@@ -2,14 +2,13 @@
 #include "database.h"
 #include <QDebug>
 query::query() {
-    database *db = database::instance();
+    db = database::instance();
 
     QString sql_command = "";
 }
 
 
 bool query::valid_username(QString username){
-    set();
     qDebug() << sql_command;
     if (username.compare("admin") == 0) {
         return true;
@@ -18,13 +17,15 @@ bool query::valid_username(QString username){
     }
 }
 
-void query::set() {
-    this->sql_command = "asdouh";
+QString query::get_sql_command() {
+    return this->sql_command;
 }
 
-void query::print() {
-    qDebug() << this->sql_command;
+void query::reset_sql_command() {
+    this->sql_command = "";
 }
+
+
 
 
 
