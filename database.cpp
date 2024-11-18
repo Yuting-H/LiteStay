@@ -45,8 +45,11 @@ void database::init_tables(QSqlDatabase db) {
 
     //create table storing employee information
 
-    query.exec("CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, username VARCHAR(20))");
-    insert_data(db, "INSERT INTO employees VALUES(0, 'admin')");
+    query.exec("CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, "
+               "username VARCHAR(20)"
+               "password VARCHAR(40)"
+               "privellege VARCHAR(20))");
+    insert_data(db, "INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
 
 }
 
