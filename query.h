@@ -4,12 +4,13 @@
 class query
 {
 private:
-    QString *sql_command;
+    QString sql_command;
 public:
 
     query();
     bool valid_username(QString username);
-
+    void set();
+    void print();
 
 };
 
