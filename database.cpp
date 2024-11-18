@@ -16,7 +16,7 @@ database *thisdb = nullptr;
  * \brief private constructor for this singleton class
  */
 database::database() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QCoreApplication::applicationDirPath() + "/hotel.db");
 
     if (db.open()) {

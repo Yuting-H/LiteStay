@@ -9,6 +9,7 @@ public:
     void insert_data(QSqlDatabase db, QString sql);
     QSqlQuery load_data(QSqlDatabase db, QString sql);
 private:
+    QSqlDatabase db;
     void init_tables(QSqlDatabase db);
 
 };
