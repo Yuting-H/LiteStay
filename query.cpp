@@ -3,6 +3,8 @@
 
 query::query() {
     database *db = database::instance();
+
+    QString sql_command = "";
 }
 
 
@@ -13,3 +15,5 @@ bool query::valid_username(QString username){
         return false;
     }
 }
+
+

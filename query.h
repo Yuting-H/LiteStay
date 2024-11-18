@@ -3,9 +3,14 @@
 #include <QString>
 class query
 {
+private:
+    QString *sql_command;
 public:
+
     query();
     bool valid_username(QString username);
+
+
 };
 
 #endif // QUERY_H
