@@ -26,6 +26,8 @@ private slots:
 
     void on_staff_btn_clicked();
 
+    void on_add_booking_btn_clicked();
+
 private:
     Ui::main_window *ui;
     query *q;

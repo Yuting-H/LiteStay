@@ -31,13 +31,21 @@ void main_window::on_booking_btn_clicked()
     ui->query_window->setCurrentIndex(0);
 }
 
-void main_window::on_room_btn_clicked()
+void main_window::on_add_booking_btn_clicked()
 {
     ui->query_window->setCurrentIndex(1);
 }
 
-void main_window::on_staff_btn_clicked()
+
+void main_window::on_room_btn_clicked()
 {
     ui->query_window->setCurrentIndex(2);
 }
+
+void main_window::on_staff_btn_clicked()
+{
+    ui->query_window->setCurrentIndex(3);
+}
+
+
 
