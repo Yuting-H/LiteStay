@@ -13,6 +13,7 @@ login_window::login_window(QWidget *parent)
     , ui(new Ui::login_window)
 {
     ui->setupUi(this);
+    setWindowTitle("Login To Hotel");
     q = new query();
 }
 
