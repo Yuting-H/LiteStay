@@ -6,11 +6,11 @@ class database
 public:
     database();
     static database * instance();
-    void insert_data(QSqlDatabase db, QString sql);
-    QSqlQuery load_data(QSqlDatabase db, QString sql);
+    void insert_data(QString sql);
+    QSqlQuery load_data(QString sql);
 private:
-    QSqlDatabase db;
-    void init_tables(QSqlDatabase db);
+    QSqlDatabase db_connection;
+    void init_tables();
 
 };
 

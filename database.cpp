@@ -16,12 +16,12 @@ database *thisdb = nullptr;
  * \brief private constructor for this singleton class
  */
 database::database() {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(QCoreApplication::applicationDirPath() + "/hotel.db");
+    db_connection = QSqlDatabase::addDatabase("QSQLITE");
+    db_connection.setDatabaseName(QCoreApplication::applicationDirPath() + "/hotel.db");
 
-    if (db.open()) {
+    if (db_connection.open()) {
         qDebug() << "Connection to database established";
-        init_tables(db);
+        init_tables();
     }else {
         qDebug() << "Connection to database failed";
     }
@@ -38,10 +38,10 @@ database * database::instance() {
     return thisdb;
 }
 
-void database::init_tables(QSqlDatabase db) {
+void database::init_tables() {
 
     //create query object
-    QSqlQuery query(db);
+    QSqlQuery query(db_connection);
 
     //create table storing employee information
 
@@ -49,7 +49,7 @@ void database::init_tables(QSqlDatabase db) {
                "username VARCHAR(20)"
                "password VARCHAR(40)"
                "privellege VARCHAR(20))");
-    insert_data(db, "INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
+    insert_data( "INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
 
 }
 
@@ -58,9 +58,9 @@ void database::init_tables(QSqlDatabase db) {
  * \param db
  * \param sql
  */
-void database::insert_data(QSqlDatabase db, QString sql) {
+void database::insert_data( QString sql) {
 
-    QSqlQuery query_insert_data(db);
+    QSqlQuery query_insert_data(db_connection);
 
     //excute sql, if error print error msg
     if(query_insert_data.exec(sql)) {
@@ -76,10 +76,10 @@ void database::insert_data(QSqlDatabase db, QString sql) {
  * \param sql
  * \return
  */
-QSqlQuery database::load_data(QSqlDatabase db, QString sql) {
+QSqlQuery database::load_data(QString sql) {
 
     //execute sql on db
-    QSqlQuery query_load_data(db);
+    QSqlQuery query_load_data(db_connection);
 
     //excute sql, if error print error msg
     if(query_load_data.exec(sql)) {
