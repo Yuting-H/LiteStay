@@ -3,24 +3,30 @@
 #include "database.h"
 #include "QString"
 
+/*!
+ * \brief The query_builder class provides functions that
+ * builds and executes sql queries
+ */
 class query_builder
 {
 private:
-    QString sql_command;
+    QString sql_query;
     database *db;
 
 public:
     query_builder();
+
+    void print_query();
     void write();
-    void read();
+    QSqlQuery read();
     void reset_command();
     void set_action_read();
     void set_action_write();
     void set_action_write_update();
     void set_action_write_delete();
-    void add_table(QString table);
-    void add_column(QString column);
-    void add_clause(QString clause);
+    void add_table(QString tables);
+    void add_column(QString columns);
+    void add_clause(QString clauses);
     void add_comma();
 };
 

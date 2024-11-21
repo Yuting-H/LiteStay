@@ -9,7 +9,7 @@ private:
 public:
 
     query();
-    bool valid_username(QString username);
+    bool valid_login_info(QString username, QString password);
     QString get_sql_command();
     void reset_sql_command();
 

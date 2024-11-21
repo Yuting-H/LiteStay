@@ -31,7 +31,7 @@ void login_window::received_login_request() {
  */
 void login_window::on_login_button_clicked()
 {
-    if (q->valid_username(ui->username_input->text())) {
+    if (q->valid_login_info(ui->username_input->text(), ui->password_input->text())) {
         emit login_window::login_request();
     }
 }

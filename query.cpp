@@ -7,18 +7,32 @@ query::query() {
 }
 
 
-bool query::valid_username(QString username){
-
-    QSqlQuery query;
+bool query::valid_login_info(QString username, QString password){
 
 
-    if (query.exec("SELECT * FROM employees")) {
-        qDebug()<< "Login query executed";
-        while(query.next()) {
-            qDebug() << query.value(0).toString() << query.value(1) << query.value(2) << query.value(3);
+    qb.reset_command();
+    qb.set_action_read();
+    qb.add_table("employees");
+    qb.add_column("username, password");
+    qb.print_query();
+    QSqlQuery returned_query = qb.read();
+
+
+    //check query has correctly executed
+    if (returned_query.exec()) {
+
+        //check existence of matching record
+        while (returned_query.next()) {
+
+            if(returned_query.value("username").toString().compare(username) == 0 &&
+                returned_query.value("password").toString().compare(password) == 0 ){
+                return true;
+            }
         }
-        return true;
+        return false;   //no matching record
+
     }else {
+        qDebug() << "error querying while validating login info";
         return false;
     }
 }

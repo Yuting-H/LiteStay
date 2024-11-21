@@ -3,8 +3,8 @@
 #include <QCoreApplication>
 #include <QSqlQuery>
 #include <QSqlError>
-
-
+#include <QFile>
+#include <QDir>
 /*!
  * \brief singleton class providing access to raw data
  */
@@ -16,6 +16,8 @@ database *thisdb = nullptr;
  * \brief private constructor for this singleton class
  */
 database::database() {
+
+
 
     db_connection = QSqlDatabase::addDatabase("QSQLITE");
 
@@ -51,9 +53,11 @@ void database::init_tables() {
 
     //create table storing employee information
 
-    qDebug() << "creating tables" << query.exec("CREATE TABLE employees (id INTEGER PRIMARY KEY, username VARCHAR(20),password VARCHAR(40), privellege VARCHAR(20))");
-    insert_data( "INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
+    query.exec("CREATE TABLE employees (id INTEGER PRIMARY KEY, username VARCHAR(20),password VARCHAR(40), privellege VARCHAR(20))");
 
+    //insert default users
+    insert_data("INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
+    insert_data("INSERT INTO employees VALUES(1, 'joe', '', 'user')");
 }
 
 /*!
@@ -89,7 +93,7 @@ QSqlQuery database::load_data(QString sql) {
     if(query_load_data.exec(sql)) {
 
     }else {
-        qDebug() << query_load_data.lastError();
+        qDebug() << "databse.cpp, error while load data: " << query_load_data.lastError();
     }
 
     return query_load_data;
