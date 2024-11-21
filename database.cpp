@@ -51,10 +51,7 @@ void database::init_tables() {
 
     //create table storing employee information
 
-    query.exec("CREATE TABLE IF NOT EXISTS employees (id INTEGER PRIMARY KEY, "
-               "username VARCHAR(20)"
-               "password VARCHAR(40)"
-               "privellege VARCHAR(20))");
+    qDebug() << "creating tables" << query.exec("CREATE TABLE employees (id INTEGER PRIMARY KEY, username VARCHAR(20),password VARCHAR(40), privellege VARCHAR(20))");
     insert_data( "INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
 
 }
@@ -68,11 +65,12 @@ void database::insert_data( QString sql) {
 
     QSqlQuery query_insert_data(db_connection);
 
+
     //excute sql, if error print error msg
     if(query_insert_data.exec(sql)) {
 
     }else {
-        qDebug() << query_insert_data.lastError();
+        qDebug()<< "Error inserting: " << query_insert_data.lastError();
     }
 }
 
