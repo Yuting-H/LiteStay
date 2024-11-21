@@ -1,12 +1,11 @@
 #ifndef QUERY_H
 #define QUERY_H
 #include <QString>
-#include "database.h"
+#include "query_builder.h"
 class query
 {
 private:
-    QString sql_command;
-    database *db;
+    query_builder qb;
 public:
 
     query();

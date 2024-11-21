@@ -16,7 +16,10 @@ database *thisdb = nullptr;
  * \brief private constructor for this singleton class
  */
 database::database() {
+
     db_connection = QSqlDatabase::addDatabase("QSQLITE");
+
+    //set path to database on disk
     db_connection.setDatabaseName(QCoreApplication::applicationDirPath() + "/hotel.db");
 
     if (db_connection.open()) {
@@ -38,6 +41,9 @@ database * database::instance() {
     return thisdb;
 }
 
+/*!
+ * \brief initialzes tables that stores the data using SQL
+ */
 void database::init_tables() {
 
     //create query object

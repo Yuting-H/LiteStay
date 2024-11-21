@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     main_window.cpp \
     query.cpp \
+    query_builder.cpp \
     window_manager.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     login_window.h \
     main_window.h \
     query.h \
+    query_builder.h \
     window_manager.h
 
 FORMS += \
