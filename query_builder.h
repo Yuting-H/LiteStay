@@ -27,7 +27,7 @@ public:
     void add_table(QString tables);
     void add_column(QString columns);
     void add_clause(QString clauses);
-    void add_comma();
+
 };
 
 #endif // QUERY_BUILDER_H
