@@ -23,7 +23,8 @@ main_window::~main_window()
 
 //Enables buttons that let the user change employee and room info
 void main_window::elevate_privilege() {
-
+    ui->staff_btn->setEnabled(true);
+    ui->room_btn->setEnabled(true);
 }
 
 //switches pages when user clicks

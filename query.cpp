@@ -9,7 +9,6 @@ query::query() {
 
 bool query::valid_login_info(QString username, QString password){
 
-
     qb.reset_command();
     qb.set_action_read();
     qb.add_table("employees");
@@ -35,6 +34,31 @@ bool query::valid_login_info(QString username, QString password){
         qDebug() << "error querying while validating login info";
         return false;
     }
+}
+
+/*!
+ * \brief checks if user has admin priveileges
+ * \param username of the user
+ * \return true if user is an admin
+ */
+bool query::user_is_admin(QString username)
+{
+    qb.reset_command();
+    qb.set_action_read();
+    qb.add_table("employees");
+    qb.add_column("privilege");
+    qb.add_clause("username='" +username + "'");
+    qb.print_query();
+    QSqlQuery returned_query = qb.read();
+
+    //check existence of matching record
+    while (returned_query.next()) {
+
+        if(returned_query.value("privilege").toString().compare("admin") == 0){
+            return true;
+        }
+    }
+    return false;   //no matching record
 }
 
 

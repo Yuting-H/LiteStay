@@ -69,7 +69,7 @@ void query_builder::add_column(QString columns)
 
 void query_builder::add_clause(QString clauses)
 {
-
+    this->sql_query.append(" WHERE " + clauses);
 }
 
 void query_builder::add_comma()

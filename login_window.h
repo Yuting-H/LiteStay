@@ -17,6 +17,7 @@ public:
 
 signals:
     void login_request();
+    void elevate_privilege();
 
 public slots:
     void received_login_request();

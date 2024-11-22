@@ -55,6 +55,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="room_btn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Room Management</string>
        </property>
@@ -62,6 +65,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="staff_btn">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Staff Management</string>
        </property>

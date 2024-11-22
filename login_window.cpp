@@ -31,8 +31,19 @@ void login_window::received_login_request() {
  */
 void login_window::on_login_button_clicked()
 {
-    if (q->valid_login_info(ui->username_input->text(), ui->password_input->text())) {
+    QString username = ui->username_input->text();
+    QString password = ui->password_input->text();
+
+    if (q->valid_login_info(username, password)) {
         emit login_window::login_request();
+        if(q->user_is_admin(username)) {
+            emit login_window::elevate_privilege();
+            qDebug() << "Logged in with elevated privilege";
+        }
+    }else {
+        ui->error_lbl->setText("Username/Password not found");
     }
+
+
 }
 
