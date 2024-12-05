@@ -589,14 +589,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="delete_staff_record_btn">
          <property name="text">
           <string>Delete Staff Record</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="search_staff_record_btn">
          <property name="text">
           <string>Search</string>
          </property>
@@ -617,7 +617,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget">
+     <widget class="QTableWidget" name="staff_table">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -628,17 +628,17 @@
       </property>
       <column>
        <property name="text">
-        <string>id</string>
+        <string>ID</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>username</string>
+        <string>Username</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>New Column</string>
+        <string>Password</string>
        </property>
       </column>
       <column>

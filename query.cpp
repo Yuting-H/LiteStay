@@ -66,7 +66,7 @@ bool query::user_is_admin(QString username)
     return false;   //no matching record
 }
 
-bool query::add_staff(QString id, QString username, QString password, QString priv)
+void query::add_staff(QString id, QString username, QString password, QString priv)
 {
     qb.reset_command();
     qb.set_action_write();
@@ -79,7 +79,16 @@ bool query::add_staff(QString id, QString username, QString password, QString pr
     qb.write();
     qb.print_query();
 
-    return true;
+}
+
+QSqlQuery query::read_staff()
+{
+    qb.reset_command();
+    qb.set_action_read();
+    qb.add_column("*");
+    qb.add_table("employee");
+    qb.print_query();
+    return qb.read();
 }
 
 

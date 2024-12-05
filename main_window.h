@@ -30,6 +30,10 @@ private slots:
 
     void on_add_staff_record_btn_clicked();
 
+
+
+    void on_search_staff_record_btn_clicked();
+
 private:
     Ui::main_window *ui;
     query *q;
