@@ -6,12 +6,17 @@ query::query() {
     query_builder *qb = new query_builder();
 }
 
+void query::reset_sql_command()
+{
+    this->qb.reset_command();
+}
+
 
 bool query::valid_login_info(QString username, QString password){
 
     qb.reset_command();
     qb.set_action_read();
-    qb.add_table("employees");
+    qb.add_table("employee");
     qb.add_column("username, password");
     qb.print_query();
     QSqlQuery returned_query = qb.read();
@@ -45,7 +50,7 @@ bool query::user_is_admin(QString username)
 {
     qb.reset_command();
     qb.set_action_read();
-    qb.add_table("employees");
+    qb.add_table("employee");
     qb.add_column("privilege");
     qb.add_clause("username='" +username + "'");
     qb.print_query();
@@ -60,6 +65,23 @@ bool query::user_is_admin(QString username)
     }
     return false;   //no matching record
 }
+
+bool query::add_staff(QString id, QString username, QString password, QString priv)
+{
+    qb.reset_command();
+    qb.set_action_write();
+    qb.add_table("employee");
+    qb.add_value(id, false);
+    qb.add_value(username, true);
+    qb.add_value(password, true);
+    qb.add_value(priv, true);
+    qb.add_value("" , false); //send flag to finish adding values
+    qb.write();
+    qb.print_query();
+
+    return true;
+}
+
 
 
 

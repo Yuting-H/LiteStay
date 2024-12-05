@@ -20,12 +20,14 @@ public:
     void write();
     QSqlQuery read();
     void reset_command();
+    QString enclose_in_quote(QString str);
     void set_action_read();
     void set_action_write();
     void set_action_write_update();
     void set_action_write_delete();
     void add_table(QString tables);
     void add_column(QString columns);
+    void add_value(QString value, bool literal);
     void add_clause(QString clauses);
 
 };

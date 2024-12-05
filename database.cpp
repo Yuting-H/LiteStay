@@ -53,14 +53,16 @@ void database::init_tables() {
 
     //create table storing employee information
 
-    query.exec("CREATE TABLE employees (id INTEGER PRIMARY KEY, "
+    query.exec("CREATE TABLE employee (id INTEGER PRIMARY KEY, "
                "username VARCHAR(20),"
                "password VARCHAR(40), "
                "privilege VARCHAR(20))");
 
     //insert default users
-    insert_data("INSERT INTO employees VALUES(0, 'admin', 'password', 'admin')");
-    insert_data("INSERT INTO employees VALUES(1, 'joe', '', 'user')");
+    insert_data("INSERT INTO employee VALUES(0, 'admin', 'password', 'admin')");
+    insert_data("INSERT INTO employee VALUES(1, 'joe', '', 'user')");
+
+
 }
 
 /*!

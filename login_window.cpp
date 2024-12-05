@@ -44,7 +44,7 @@ void login_window::on_login_button_clicked()
             qDebug() << "Logged in with elevated privilege";
         }
     }else {
-        ui->error_lbl->setText("Username/Password not found");
+        ui->error_lbl->setText("Username/Password no match");
     }
 
 

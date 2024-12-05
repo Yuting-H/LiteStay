@@ -46,6 +46,16 @@ void query_builder::reset_command()
     this->sql_query = "$action $target $args";
 }
 
+QString query_builder::enclose_in_quote(QString str)
+{
+
+    if (str.compare("") == 0){
+        return str;
+    }
+
+    return "'" + str + "'";
+}
+
 /*!
  * \brief set command to read from the db
  */
@@ -94,6 +104,23 @@ void query_builder::add_table(QString tables)
 void query_builder::add_column(QString columns)
 {
     this->sql_query.replace("$columns", columns);
+}
+
+/*!
+ * \brief add a value into the sql write query
+ * \param value the value to be added, if value = "" then finish writing value
+ */
+void query_builder::add_value(QString value, bool literal)
+{
+    if (literal) {
+        value = enclose_in_quote(value);
+    }
+
+    if (value.compare("") == 0) {
+        this->sql_query.replace(", $value_args", "");
+    }else {
+        this->sql_query.replace("$value_args", value + ", $value_args");
+    }
 }
 
 void query_builder::add_clause(QString clauses)

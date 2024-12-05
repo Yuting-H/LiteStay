@@ -18,6 +18,7 @@ main_window::main_window(QWidget *parent)
 
 main_window::~main_window()
 {
+
     delete ui;
 }
 
@@ -50,4 +51,14 @@ void main_window::on_staff_btn_clicked()
 }
 
 
+void main_window::on_add_staff_record_btn_clicked()
+{
+    QString id = ui->staff_id_input->text();
+    QString username = ui->staff_username_input->text();
+    QString password = ui->staff_password_input->text();
+    QString priv = ui->staff_privilege_input->currentText();
+
+    q->reset_sql_command();
+    q->add_staff(id, username, password, priv);
+}
 
