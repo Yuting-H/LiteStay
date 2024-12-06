@@ -1,6 +1,8 @@
 ## About
 
-This project is a full stack desktop app for hotel management
+LiteStay is a lightweight hotel management software for small-scale properties 
+
+This project is a submission to my CS3307 final.
 
 ## Running the code
 
