@@ -1,5 +1,4 @@
 #include "query.h"
-#include "database.h"
 #include <QDebug>
 #include <QSqlQuery>
 query::query() {
