@@ -1,6 +1,6 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
-#include "query.h"
+#include "staff_query.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -36,6 +36,6 @@ private slots:
 
 private:
     Ui::main_window *ui;
-    query *q;
+    staff_query *q;
 };
 #endif // MAIN_WINDOW_H

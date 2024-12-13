@@ -9,7 +9,7 @@
 query_builder::query_builder() {
     db = database::instance();
 
-    QString sql_query = "";
+    sql_query = "";
 }
 
 void query_builder::print_query()

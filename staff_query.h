@@ -2,13 +2,13 @@
 #define QUERY_H
 #include <QString>
 #include "query_builder.h"
-class query
+class staff_query
 {
 private:
     query_builder qb;
 public:
 
-    query();
+    staff_query();
 
     QString get_sql_command();
     void reset_sql_command();

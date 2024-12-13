@@ -1,7 +1,7 @@
 #include "main_window.h"
 #include "qsqlquery.h"
 #include "ui_main_window.h"
-#include "query.h"
+#include "staff_query.h"
 #include <QDebug>
 
 /*!
@@ -14,7 +14,7 @@ main_window::main_window(QWidget *parent)
     ui->setupUi(this);
     setFixedSize(1024, 578);
     setWindowTitle("Hotel Management System");
-    q = new query();
+    q = new staff_query();
 }
 
 main_window::~main_window()
@@ -78,8 +78,6 @@ void main_window::on_search_staff_record_btn_clicked()
     //display data on UI
     while (result.next()) {
         ui->staff_table->setRowCount(row_num + 1);
-        qDebug() << result.value("id") << result.value("username").toString();
-
         ui->staff_table->setItem(row_num, 0, new QTableWidgetItem(result.value("id").toString()));
         ui->staff_table->setItem(row_num, 1, new QTableWidgetItem(result.value("username").toString()));
         ui->staff_table->setItem(row_num, 2, new QTableWidgetItem(result.value("password").toString()));

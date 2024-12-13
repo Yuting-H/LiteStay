@@ -1,17 +1,17 @@
-#include "query.h"
+#include "staff_query.h"
 #include <QDebug>
 #include <QSqlQuery>
-query::query() {
+staff_query::staff_query() {
     query_builder *qb = new query_builder();
 }
 
-void query::reset_sql_command()
+void staff_query::reset_sql_command()
 {
     this->qb.reset_command();
 }
 
 
-bool query::valid_login_info(QString username, QString password){
+bool staff_query::valid_login_info(QString username, QString password){
 
     qb.reset_command();
     qb.set_action_read();
@@ -45,7 +45,7 @@ bool query::valid_login_info(QString username, QString password){
  * \param username of the user
  * \return true if user is an admin
  */
-bool query::user_is_admin(QString username)
+bool staff_query::user_is_admin(QString username)
 {
     qb.reset_command();
     qb.set_action_read();
@@ -65,7 +65,7 @@ bool query::user_is_admin(QString username)
     return false;   //no matching record
 }
 
-void query::add_staff(QString id, QString username, QString password, QString priv)
+void staff_query::add_staff(QString id, QString username, QString password, QString priv)
 {
     qb.reset_command();
     qb.set_action_write();
@@ -80,7 +80,7 @@ void query::add_staff(QString id, QString username, QString password, QString pr
 
 }
 
-QSqlQuery query::read_staff()
+QSqlQuery staff_query::read_staff()
 {
     qb.reset_command();
     qb.set_action_read();

@@ -1,6 +1,6 @@
 #include "login_window.h"
 #include "ui_login_window.h"
-#include "query.h"
+#include "staff_query.h"
 
 /*!
  * \brief displays the login window
@@ -14,7 +14,7 @@ login_window::login_window(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("Login To Hotel");
-    q = new query();
+    q = new staff_query();
 }
 
 login_window::~login_window()
