@@ -21,6 +21,10 @@ main_window::main_window(QWidget *parent)
 
     ui->staff_table->verticalHeader()->setVisible(false);
     ui->room_table->verticalHeader()->setVisible(false);
+
+    //initialize table display
+    on_search_room_btn_clicked();
+    on_search_staff_record_btn_clicked();
 }
 
 main_window::~main_window()
@@ -81,6 +85,9 @@ void main_window::on_search_staff_record_btn_clicked()
     //keep track of row
     int row_num = 0;
 
+    //reset table view
+    ui->staff_table->setRowCount(0);
+
     //display data on UI
     while (result.next()) {
         QString id;
@@ -93,7 +100,7 @@ void main_window::on_search_staff_record_btn_clicked()
         ui->staff_table->setItem(row_num, 4, new QTableWidgetItem(result.value("privilege").toString()));
 
         //create delete button
-        QPushButton* button = new QPushButton(QString("Button %1").arg(row_num + 1));
+        QPushButton* button = new QPushButton(QString("Delete"));
         ui->staff_table->setCellWidget(row_num, 5, button);
 
         //connect delete button to function
@@ -107,20 +114,45 @@ void main_window::on_search_staff_record_btn_clicked()
 
 }
 
-
 void main_window::on_search_room_btn_clicked()
 {
     rq->reset_sql_command();
     QSqlQuery result = rq->read_room();
 
     int row_num = 0;
+
+    //reset table view
+    ui->room_table->setRowCount(0);
+
     while(result.next()) {
-        ui->room_table->setRowCount(row_num+1);
+        QString roomid;
+
+        ui->room_table->setRowCount(row_num + 1);
         ui->room_table->setItem(row_num, 0, new QTableWidgetItem(QString::number(row_num)));
-        ui->room_table->setItem(row_num, 1, new QTableWidgetItem(result.value("roomid").toString()));
+        ui->room_table->setItem(row_num, 1, new QTableWidgetItem(roomid = result.value("roomid").toString()));
         ui->room_table->setItem(row_num, 2, new QTableWidgetItem(result.value("roomtype").toString()));
+
+        QPushButton* button = new QPushButton(QString("Delete"));
+        ui->room_table->setCellWidget(row_num, 3, button);
+
+        QObject::connect(button, &QPushButton::clicked, [ roomid, this]() {
+            rq->delete_room(roomid);
+            this->on_search_room_btn_clicked();
+        });
+
         row_num++;
     }
 }
 
+
+
+void main_window::on_add_room_btn_clicked()
+{
+    QString roomid = ui->room_num_input_2->text();
+    QString room_type = ui->room_type_input->text();
+
+    rq->reset_sql_command();
+    rq->add_room(roomid, room_type);
+    on_search_room_btn_clicked();
+}
 

@@ -65,6 +65,13 @@ bool staff_query::user_is_admin(QString username)
     return false;   //no matching record
 }
 
+/*!
+ * \brief adds a staff record into the database
+ * \param id is a unique
+ * \param username
+ * \param password
+ * \param priv
+ */
 void staff_query::add_staff(QString id, QString username, QString password, QString priv)
 {
     qb.reset_command();

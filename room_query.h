@@ -14,7 +14,7 @@ public:
 
     QSqlQuery read_room();
     void add_room(QString roomid, QString room_type);
-    void delete_room(int roomid);
+    void delete_room(QString roomid);
 };
 
 #endif // ROOM_QUERY_H

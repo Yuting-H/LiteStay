@@ -54,18 +54,18 @@ void database::init_tables() {
     //create table storing employee information
 
     query.exec("CREATE TABLE employee (id INTEGER PRIMARY KEY, "
-               "username VARCHAR(20),"
+               "username VARCHAR(20) UNIQUE,"
                "password VARCHAR(40), "
                "privilege VARCHAR(20))");
 
     //insert default users
     insert_data("INSERT INTO employee VALUES(0, 'admin', '', 'admin')");
-    insert_data("INSERT INTO employee VALUES(1, 'joe', 'password', 'user')");
+    insert_data("INSERT INTO employee VALUES(1, 'defaultuser', '', 'user')");
 
     //create table stoting room information
     query.exec("CREATE TABLE room (roomid INTEGER PRIMARY KEY, roomtype VARCHAR(40))");
     insert_data("INSERT INTO room VALUES(0, 'example room type')");
-
+    insert_data("INSERT INTO room VALUES(101, 'Basic 2 Bed')");
 
 }
 
