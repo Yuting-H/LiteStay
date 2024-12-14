@@ -13,6 +13,7 @@ SOURCES += \
     login_window.cpp \
     main.cpp \
     main_window.cpp \
+    room_query.cpp \
     staff_query.cpp \
     query_builder.cpp \
     window_manager.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     database.h \
     login_window.h \
     main_window.h \
+    room_query.h \
     staff_query.h \
     query_builder.h \
     window_manager.h

@@ -1,5 +1,6 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
+#include "room_query.h"
 #include "staff_query.h"
 #include <QMainWindow>
 
@@ -34,8 +35,11 @@ private slots:
 
     void on_search_staff_record_btn_clicked();
 
+    void on_search_room_btn_clicked();
+
 private:
     Ui::main_window *ui;
-    staff_query *q;
+    staff_query *sq;
+    room_query *rq;
 };
 #endif // MAIN_WINDOW_H

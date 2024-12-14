@@ -59,8 +59,12 @@ void database::init_tables() {
                "privilege VARCHAR(20))");
 
     //insert default users
-    insert_data("INSERT INTO employee VALUES(0, 'admin', 'password', 'admin')");
-    insert_data("INSERT INTO employee VALUES(1, 'joe', '', 'user')");
+    insert_data("INSERT INTO employee VALUES(0, 'admin', '', 'admin')");
+    insert_data("INSERT INTO employee VALUES(1, 'joe', 'password', 'user')");
+
+    //create table stoting room information
+    query.exec("CREATE TABLE room (roomid INTEGER PRIMARY KEY, roomtype VARCHAR(40))");
+    insert_data("INSERT INTO room VALUES(0, 'example room type')");
 
 
 }

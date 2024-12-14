@@ -2,6 +2,7 @@
 #include "qsqlquery.h"
 #include "ui_main_window.h"
 #include "staff_query.h"
+#include "room_query.h"
 #include <QDebug>
 
 /*!
@@ -14,7 +15,12 @@ main_window::main_window(QWidget *parent)
     ui->setupUi(this);
     setFixedSize(1024, 578);
     setWindowTitle("Hotel Management System");
-    q = new staff_query();
+    sq = new staff_query();
+    rq = new room_query();
+
+
+    ui->staff_table->verticalHeader()->setVisible(false);
+    ui->room_table->verticalHeader()->setVisible(false);
 }
 
 main_window::~main_window()
@@ -61,29 +67,60 @@ void main_window::on_add_staff_record_btn_clicked()
     QString priv = ui->staff_privilege_input->currentText();
 
     //write to db
-    q->reset_sql_command();
-    q->add_staff(id, username, password, priv);
+    sq->reset_sql_command();
+    sq->add_staff(id, username, password, priv);
     on_search_staff_record_btn_clicked();
 }
 
 void main_window::on_search_staff_record_btn_clicked()
 {
     //create result object
-    q->reset_sql_command();
-    QSqlQuery result = q->read_staff();
+    sq->reset_sql_command();
+    QSqlQuery result = sq->read_staff();
 
     //keep track of row
     int row_num = 0;
 
     //display data on UI
     while (result.next()) {
+        QString id;
+
         ui->staff_table->setRowCount(row_num + 1);
-        ui->staff_table->setItem(row_num, 0, new QTableWidgetItem(result.value("id").toString()));
-        ui->staff_table->setItem(row_num, 1, new QTableWidgetItem(result.value("username").toString()));
-        ui->staff_table->setItem(row_num, 2, new QTableWidgetItem(result.value("password").toString()));
-        ui->staff_table->setItem(row_num, 3, new QTableWidgetItem(result.value("privilege").toString()));
+        ui->staff_table->setItem(row_num, 0, new QTableWidgetItem(QString::number(row_num)));
+        ui->staff_table->setItem(row_num, 1, new QTableWidgetItem(id = result.value("id").toString()));
+        ui->staff_table->setItem(row_num, 2, new QTableWidgetItem(result.value("username").toString()));
+        ui->staff_table->setItem(row_num, 3, new QTableWidgetItem(result.value("password").toString()));
+        ui->staff_table->setItem(row_num, 4, new QTableWidgetItem(result.value("privilege").toString()));
+
+        //create delete button
+        QPushButton* button = new QPushButton(QString("Button %1").arg(row_num + 1));
+        ui->staff_table->setCellWidget(row_num, 5, button);
+
+        //connect delete button to function
+        QObject::connect(button, &QPushButton::clicked, [ id, this]() {
+            sq->delete_staff(id);
+            this->on_search_staff_record_btn_clicked();
+        });
+
         row_num++;
     }
 
 }
+
+
+void main_window::on_search_room_btn_clicked()
+{
+    rq->reset_sql_command();
+    QSqlQuery result = rq->read_room();
+
+    int row_num = 0;
+    while(result.next()) {
+        ui->room_table->setRowCount(row_num+1);
+        ui->room_table->setItem(row_num, 0, new QTableWidgetItem(QString::number(row_num)));
+        ui->room_table->setItem(row_num, 1, new QTableWidgetItem(result.value("roomid").toString()));
+        ui->room_table->setItem(row_num, 2, new QTableWidgetItem(result.value("roomtype").toString()));
+        row_num++;
+    }
+}
+
 

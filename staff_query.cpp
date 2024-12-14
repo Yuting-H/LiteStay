@@ -90,6 +90,14 @@ QSqlQuery staff_query::read_staff()
     return qb.read();
 }
 
+void staff_query::delete_staff(QString id) {
+    qb.reset_command();
+    qb.set_action_write_delete();
+    qb.add_table("employee");
+    qb.add_clause("id=" + id);
+    qb.write();
+    qb.print_query();
+}
 
 
 
