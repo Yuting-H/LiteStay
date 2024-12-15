@@ -23,6 +23,7 @@ main_window::main_window(QWidget *parent)
     ui->staff_table->verticalHeader()->setVisible(false);
     ui->room_table->verticalHeader()->setVisible(false);
     ui->booking_table->verticalHeader()->setVisible(false);
+    ui->add_booking_avaliable_rooms->verticalHeader()->setVisible(false);
 
 
 
@@ -149,7 +150,9 @@ void main_window::on_search_room_btn_clicked()
 }
 
 
-
+/*!
+ * \brief main_window::on_add_room_btn_clicked
+ */
 void main_window::on_add_room_btn_clicked()
 {
     QString roomid = ui->room_num_input_2->text();
@@ -160,13 +163,40 @@ void main_window::on_add_room_btn_clicked()
     on_search_room_btn_clicked();
 }
 
-//Find rooms with avaliability
+/*!
+ * \brief Display avaliable rooms
+ */
 void main_window::on_add_booking_find_room_btn_clicked()
 {
     QString startdate = ui->add_booking_start_date_input->text();
     QString enddate = ui->add_booking_end_date_input->text();
 
-    bq->test();
+    //result stores avaliale room info
+    QSqlQuery result = bq->find_avaliable_room(startdate, enddate);
+
+    int row_num = 0;
+
+    ui->add_booking_avaliable_rooms->setRowCount(0);
+
+    while (result.next()) {
+        QString bookid;
+
+        //display data
+        ui->add_booking_avaliable_rooms->setRowCount(row_num + 1);
+        ui->add_booking_avaliable_rooms->setItem(row_num, 1, new QTableWidgetItem(bookid = result.value("roomid").toString()));
+        ui->add_booking_avaliable_rooms->setItem(row_num, 2, new QTableWidgetItem("")); //room type
+
+        //button to select a room
+        QPushButton* button = new QPushButton(QString("Select room"));
+        ui->add_booking_avaliable_rooms->setCellWidget(row_num, 0, button);
+
+        QObject::connect(button, &QPushButton::clicked, [ bookid, this]() {
+
+            ui->add_booking_room_num_input->setText(bookid);
+        });
+
+        row_num++;
+    }
 }
 
 

@@ -49,17 +49,18 @@ void booking_query::delete_booking(QString bookid)
     qb.reset_command();
     qb.set_action_write_delete();
     qb.add_table("booking");
-    qb.add_clause("id=" + bookid);
+    qb.add_clause("bookid=" + bookid);
     qb.print_query();
     qb.read();
 }
 
+//delete this in prod
 void booking_query::test() {
     qb.reset_command();
     qb.set_action_read();
     qb.add_column("room.roomid");
     qb.add_table("room, booking");
-    qb.add_clause("room.roomid=booking.roomid");
+
     qb.print_query();
 }
 
@@ -67,8 +68,11 @@ QSqlQuery booking_query::find_avaliable_room(QString startdate, QString enddate)
 {
     qb.reset_command();
     qb.set_action_read();
-    qb.add_column("*");
+    qb.add_column("room.roomid");
     qb.add_table("room");
+    qb.add_clause("room.roomid NOT IN ("
+                  "SELECT booking.roomid FROM booking WHERE NOT ("
+                  "booking.enddate < '" + startdate + "' OR booking.startdate > '" + enddate + "'))");
     qb.print_query();
     return qb.read();
 }

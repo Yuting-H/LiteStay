@@ -91,7 +91,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="booking_page">
      <widget class="QLabel" name="booking_lbl">
@@ -250,12 +250,17 @@
       </property>
       <column>
        <property name="text">
-        <string>#</string>
+        <string>Record Number</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Booking ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Is Checked In?</string>
        </property>
       </column>
       <column>
@@ -371,13 +376,6 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Book End Date</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="1">
           <widget class="QDateEdit" name="add_booking_start_date_input">
            <property name="displayFormat">
@@ -385,8 +383,21 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Book End Date</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="1">
           <widget class="QDateEdit" name="add_booking_end_date_input">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="displayFormat">
             <string>yyyy-MM-dd</string>
            </property>
@@ -439,7 +450,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="room_num_input"/>
+          <widget class="QLineEdit" name="add_booking_room_num_input"/>
          </item>
         </layout>
        </item>
@@ -474,7 +485,7 @@
        <item>
         <widget class="QPushButton" name="add_booking">
          <property name="text">
-          <string>Add Boking</string>
+          <string>Add Booking</string>
          </property>
         </widget>
        </item>
@@ -489,6 +500,21 @@
         <height>291</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string>Action</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Room Number</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Room Type</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="room_page">
