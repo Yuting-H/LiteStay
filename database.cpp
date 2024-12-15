@@ -69,13 +69,15 @@ void database::init_tables() {
 
     //create table storing
     query.exec("CREATE TABLE booking (bookid INTEGER PRIMARY KEY,"
+               "ischeckedin boolean,"
                "roomid INTEGER,"
                "guestfirstname VARCHAR(40),"
                "guestlastname VARCHAR(40),"
                "startdate DATE,"
                "enddate DATE,"
                " FOREIGN KEY (roomid) REFERENCES room(roomid))");
-
+    insert_data("INSERT INTO booking VALUES(0, false, 101, 'John', 'Doe', '2024-01-09', '2024-01-10') ");
+    insert_data("INSERT INTO booking VALUES(1, true, 102, 'Mary', 'Sue', '2024-11-01', '2024-11-05')");
 }
 
 /*!

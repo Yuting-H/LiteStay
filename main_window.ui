@@ -91,7 +91,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="booking_page">
      <widget class="QLabel" name="booking_lbl">
@@ -185,14 +185,14 @@
          <item row="2" column="1">
           <widget class="QDateEdit" name="booking_start_date_input">
            <property name="displayFormat">
-            <string>yyyy/MM/dd</string>
+            <string>yyyy-MM-dd</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
           <widget class="QDateEdit" name="booking_end_date_input">
            <property name="displayFormat">
-            <string>yyyy/MM/dd</string>
+            <string>yyyy-MM-dd</string>
            </property>
           </widget>
          </item>
@@ -236,6 +236,84 @@
           <widget class="QLineEdit" name="booking_room_num_input"/>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTableWidget" name="booking_table">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>240</y>
+        <width>761</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>#</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Booking ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Room Number</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Guest First Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Guest Last Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Start Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>End Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Action</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>190</y>
+        <width>761</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="booking_ribbon">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <item>
+        <widget class="QPushButton" name="booking_find_booking_btn">
+         <property name="text">
+          <string>Search Bookings</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -287,40 +365,30 @@
           <number>10</number>
          </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Room Num</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="room_num_input"/>
-         </item>
-         <item row="1" column="0">
           <widget class="QLabel" name="label_6">
            <property name="text">
             <string>Book Start Date</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_8">
            <property name="text">
             <string>Book End Date</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="0" column="1">
           <widget class="QDateEdit" name="add_booking_start_date_input">
            <property name="displayFormat">
-            <string>yyyy/MM/dd</string>
+            <string>yyyy-MM-dd</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
+         <item row="1" column="1">
           <widget class="QDateEdit" name="add_booking_end_date_input">
            <property name="displayFormat">
-            <string>yyyy/MM/dd</string>
+            <string>yyyy-MM-dd</string>
            </property>
           </widget>
          </item>
@@ -343,25 +411,35 @@
          <property name="bottomMargin">
           <number>10</number>
          </property>
-         <item row="0" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
             <string>Guest First Name</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item row="1" column="1">
           <widget class="QLineEdit" name="add_booking_firstname_input"/>
          </item>
-         <item row="1" column="0">
+         <item row="2" column="0">
           <widget class="QLabel" name="label_7">
            <property name="text">
             <string>Guest Last Name</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="add_booking_last_name_input"/>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="add_booking_lastname_input"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Room Num</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="room_num_input"/>
          </item>
         </layout>
        </item>
