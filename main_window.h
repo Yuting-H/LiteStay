@@ -39,6 +39,8 @@ private slots:
 
     void on_add_room_btn_clicked();
 
+    void on_add_booking_clicked();
+
 private:
     Ui::main_window *ui;
     staff_query *sq;

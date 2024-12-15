@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    booking_query.cpp \
     database.cpp \
     login_window.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
     window_manager.cpp
 
 HEADERS += \
+    booking_query.h \
     database.h \
     login_window.h \
     main_window.h \

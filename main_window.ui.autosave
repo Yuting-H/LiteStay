@@ -239,6 +239,16 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTableWidget" name="bookings_table">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>220</y>
+        <width>761</width>
+        <height>261</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="add_booking_page">
      <widget class="QLabel" name="add_booking_page_lbl">

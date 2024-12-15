@@ -62,10 +62,19 @@ void database::init_tables() {
     insert_data("INSERT INTO employee VALUES(0, 'admin', '', 'admin')");
     insert_data("INSERT INTO employee VALUES(1, 'defaultuser', '', 'user')");
 
-    //create table stoting room information
+    //create table storing room information
     query.exec("CREATE TABLE room (roomid INTEGER PRIMARY KEY, roomtype VARCHAR(40))");
     insert_data("INSERT INTO room VALUES(0, 'example room type')");
     insert_data("INSERT INTO room VALUES(101, 'Basic 2 Bed')");
+
+    //create table storing
+    query.exec("CREATE TABLE booking (bookid INTEGER PRIMARY KEY,"
+               "roomid INTEGER,"
+               "guestfirstname VARCHAR(40),"
+               "guestlastname VARCHAR(40),"
+               "startdate DATE,"
+               "enddate DATE,"
+               " FOREIGN KEY (roomid) REFERENCES room(roomid))");
 
 }
 

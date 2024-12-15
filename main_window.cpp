@@ -18,9 +18,11 @@ main_window::main_window(QWidget *parent)
     sq = new staff_query();
     rq = new room_query();
 
-
+    //remove default record numbering
     ui->staff_table->verticalHeader()->setVisible(false);
     ui->room_table->verticalHeader()->setVisible(false);
+
+
 
     //initialize table display
     on_search_room_btn_clicked();
@@ -154,5 +156,11 @@ void main_window::on_add_room_btn_clicked()
     rq->reset_sql_command();
     rq->add_room(roomid, room_type);
     on_search_room_btn_clicked();
+}
+
+
+void main_window::on_add_booking_clicked()
+{
+    qDebug() << ui->booking_start_date_input->date().toString("yyyy-MM-dd");
 }
 
