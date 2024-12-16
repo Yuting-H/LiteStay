@@ -28,12 +28,12 @@ QSqlQuery booking_query::read_booking()
     return qb.read();
 }
 
-void booking_query::add_booking(QString bookid, QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date)
+void booking_query::add_booking(QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date)
 {
     qb.reset_command();
     qb.set_action_write();
     qb.add_table("booking");
-    qb.add_value(bookid, false);
+    qb.add_value("null", false); //omitting bookid, sqlite will auto-assign
     qb.add_value(ischeckedin, false);
     qb.add_value(roomid, false);
     qb.add_value(guest_first_name, true);
@@ -41,6 +41,7 @@ void booking_query::add_booking(QString bookid, QString ischeckedin, QString roo
     qb.add_value(start_date, true);
     qb.add_value(end_date, true);
     qb.add_value("", false);
+    qb.write();
     qb.print_query();
 }
 

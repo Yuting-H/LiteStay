@@ -13,7 +13,7 @@ public:
     void reset_sql_command();
 
     QSqlQuery read_booking();
-    void add_booking(QString bookid, QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date);
+    void add_booking(QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date);
     void delete_booking(QString bookid);
 
     QSqlQuery find_avaliable_room(QString startdate, QString enddate);

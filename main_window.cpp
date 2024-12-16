@@ -202,15 +202,14 @@ void main_window::on_add_booking_find_room_btn_clicked()
 
 void main_window::on_add_booking_clicked()
 {
-    QString bookid = "-1";
     QString booked = "false";
-    QString roomid = "101";
+    QString roomid = ui->add_booking_room_num_input->text();
     QString guestfirstname = ui->add_booking_firstname_input->text();
     QString guestlastname = ui->add_booking_lastname_input->text();
     QString startdate = ui->add_booking_start_date_input->text();
     QString enddate = ui->add_booking_end_date_input->text();
 
-    bq->add_booking(bookid, booked, roomid, guestfirstname, guestlastname, startdate, enddate);
+    bq->add_booking(booked, roomid, guestfirstname, guestlastname, startdate, enddate);
 
 }
 
