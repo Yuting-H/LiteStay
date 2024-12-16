@@ -47,12 +47,41 @@ void booking_query::add_booking(QString ischeckedin, QString roomid, QString gue
 
 void booking_query::delete_booking(QString bookid)
 {
+
+
     qb.reset_command();
     qb.set_action_write_delete();
     qb.add_table("booking");
     qb.add_clause("bookid=" + bookid);
     qb.print_query();
     qb.read();
+}
+
+void booking_query::flip_checkin(QString bookid)
+{
+    qb.reset_command();
+    qb.set_action_read();
+    qb.add_column("bookid, ischeckedin");
+    qb.add_table("booking");
+    qb.add_clause("bookid=" + bookid);
+
+    QSqlQuery result = qb.read();
+    QString checkin = "0";
+
+    if (result.next()) {
+        if (result.value("ischeckedin").toString().compare('0') == 0){
+            checkin = "1";
+        }
+    }
+
+    qb.reset_command();
+    qb.set_action_write_update();
+    qb.add_table("booking");
+    qb.add_column("ischeckedin=" + checkin);
+    qb.add_clause("bookid="+bookid);
+    qb.print_query();
+    qb.write();
+
 }
 
 //delete this in prod

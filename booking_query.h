@@ -15,7 +15,7 @@ public:
     QSqlQuery read_booking();
     void add_booking(QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date);
     void delete_booking(QString bookid);
-
+    void flip_checkin(QString bookid);
     QSqlQuery find_avaliable_room(QString startdate, QString enddate);
 
 

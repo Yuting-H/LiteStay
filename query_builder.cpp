@@ -83,7 +83,7 @@ void query_builder::set_action_write_update()
 {
     this->sql_query.replace("$action", "UPDATE");
     this->sql_query.replace("$target", "$tables");
-    this->sql_query.replace("$args", "SET $column_value_pairs");
+    this->sql_query.replace("$args", "SET $columns");
 }
 
 /*!

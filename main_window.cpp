@@ -235,22 +235,21 @@ void main_window::on_booking_find_booking_btn_clicked()
         QString bookid;
 
         ui->booking_table->setRowCount(row_num + 1);
-        ui->booking_table->setItem(row_num, 0, new QTableWidgetItem(QString::number(row_num)));
-        ui->booking_table->setItem(row_num, 1, new QTableWidgetItem(bookid = result.value("bookid").toString()));
-        ui->booking_table->setItem(row_num, 2, new QTableWidgetItem(result.value("ischeckedin").toString()));
-        ui->booking_table->setItem(row_num, 3, new QTableWidgetItem(result.value("roomid").toString()));
-        ui->booking_table->setItem(row_num, 4, new QTableWidgetItem(result.value("guestfirstname").toString()));
-        ui->booking_table->setItem(row_num, 5, new QTableWidgetItem(result.value("guestlastname").toString()));
-        ui->booking_table->setItem(row_num, 6, new QTableWidgetItem(result.value("startdate").toString()));
-        ui->booking_table->setItem(row_num, 7, new QTableWidgetItem(result.value("enddate").toString()));
+        ui->booking_table->setItem(row_num, 0, new QTableWidgetItem(bookid = result.value("bookid").toString()));
+        ui->booking_table->setItem(row_num, 1, new QTableWidgetItem(result.value("ischeckedin").toString()));
+        ui->booking_table->setItem(row_num, 2, new QTableWidgetItem(result.value("roomid").toString()));
+        ui->booking_table->setItem(row_num, 3, new QTableWidgetItem(result.value("guestfirstname").toString()));
+        ui->booking_table->setItem(row_num, 4, new QTableWidgetItem(result.value("guestlastname").toString()));
+        ui->booking_table->setItem(row_num, 5, new QTableWidgetItem(result.value("startdate").toString()));
+        ui->booking_table->setItem(row_num, 6, new QTableWidgetItem(result.value("enddate").toString()));
 
 
-        QPushButton* button = new QPushButton(QString("Delete"));
-        ui->booking_table->setCellWidget(row_num, 8, button);
+        QPushButton* button = new QPushButton(QString("Checkin/Undo"));
+        ui->booking_table->setCellWidget(row_num, 7, button);
 
         //on delete button click, delete and refresh
         QObject::connect(button, &QPushButton::clicked, [ bookid, this]() {
-            bq->delete_booking(bookid);
+            bq->flip_checkin(bookid);
             this->on_booking_find_booking_btn_clicked();
         });
 
