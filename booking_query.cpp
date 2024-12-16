@@ -69,7 +69,7 @@ QSqlQuery booking_query::find_avaliable_room(QString startdate, QString enddate)
 {
     qb.reset_command();
     qb.set_action_read();
-    qb.add_column("room.roomid");
+    qb.add_column("*");
     qb.add_table("room");
     qb.add_clause("room.roomid NOT IN ("
                   "SELECT booking.roomid FROM booking WHERE NOT ("

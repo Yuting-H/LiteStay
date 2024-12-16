@@ -53,5 +53,7 @@ private:
     staff_query *sq;
     room_query *rq;
     booking_query *bq;
+
+    void update_add_room_summary_table();
 };
 #endif // MAIN_WINDOW_H

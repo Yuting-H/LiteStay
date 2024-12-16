@@ -24,12 +24,15 @@ main_window::main_window(QWidget *parent)
     ui->room_table->verticalHeader()->setVisible(false);
     ui->booking_table->verticalHeader()->setVisible(false);
     ui->add_booking_avaliable_rooms->verticalHeader()->setVisible(false);
+    ui->add_booking_summary_table->verticalHeader()->setVisible(false);
 
 
-
-    //initialize table display
+    //initialize table items
     on_search_room_btn_clicked();
     on_search_staff_record_btn_clicked();
+    on_booking_find_booking_btn_clicked();
+    on_add_booking_find_room_btn_clicked();
+    update_add_room_summary_table();
 }
 
 main_window::~main_window()
@@ -161,6 +164,7 @@ void main_window::on_add_room_btn_clicked()
     rq->reset_sql_command();
     rq->add_room(roomid, room_type);
     on_search_room_btn_clicked();
+    on_add_booking_find_room_btn_clicked(); //also update avaliable rooms
 }
 
 /*!
@@ -184,7 +188,7 @@ void main_window::on_add_booking_find_room_btn_clicked()
         //display data
         ui->add_booking_avaliable_rooms->setRowCount(row_num + 1);
         ui->add_booking_avaliable_rooms->setItem(row_num, 1, new QTableWidgetItem(bookid = result.value("roomid").toString()));
-        ui->add_booking_avaliable_rooms->setItem(row_num, 2, new QTableWidgetItem("")); //room type
+        ui->add_booking_avaliable_rooms->setItem(row_num, 2, new QTableWidgetItem(result.value("roomtype").toString())); //room type
 
         //button to select a room
         QPushButton* button = new QPushButton(QString("Select room"));
@@ -210,6 +214,9 @@ void main_window::on_add_booking_clicked()
     QString enddate = ui->add_booking_end_date_input->text();
 
     bq->add_booking(booked, roomid, guestfirstname, guestlastname, startdate, enddate);
+
+    on_add_booking_find_room_btn_clicked();
+    update_add_room_summary_table();
 
 }
 
@@ -249,6 +256,35 @@ void main_window::on_booking_find_booking_btn_clicked()
 
         row_num++;
     }
+
+}
+
+void main_window::update_add_room_summary_table()
+{
+    //update add_booking_summary_table
+    QSqlQuery result = bq->read_booking();
+    int row_num = 0;
+
+    ui->add_booking_summary_table->setRowCount(0);
+
+    while (result.next()) {
+        QString bookid;
+
+        ui->add_booking_summary_table->setRowCount(row_num + 1);
+        ui->add_booking_summary_table->setItem(row_num, 0, new QTableWidgetItem(bookid = result.value("bookid").toString()));
+
+        QPushButton* button = new QPushButton(QString("Delete"));
+        ui->add_booking_summary_table->setCellWidget(row_num, 1, button);
+
+        //on delete button click, delete and refresh
+        QObject::connect(button, &QPushButton::clicked, [ bookid, this]() {
+            bq->delete_booking(bookid);
+            this->update_add_room_summary_table();
+        });
+
+        row_num++;
+    }
+
 
 }
 
