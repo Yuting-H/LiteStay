@@ -20,6 +20,9 @@ public:
     ~main_window();
     void elevate_privilege();
 
+public slots:
+    void received_login_request();
+
 private slots:
 
     void on_booking_btn_clicked();

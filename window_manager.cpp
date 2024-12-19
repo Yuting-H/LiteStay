@@ -16,9 +16,9 @@ window_manager::window_manager() {
     l = new login_window();
     l->show();
     m = new main_window();
-    m->show();
 
     //connects
     QObject::connect(l, &login_window::login_request, l, &login_window::received_login_request);
+    QObject::connect(l, &login_window::login_request, m, &main_window::received_login_request);
     QObject::connect(l, &login_window::elevate_privilege, m, &main_window::elevate_privilege);
 }

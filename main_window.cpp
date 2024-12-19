@@ -47,6 +47,11 @@ void main_window::elevate_privilege() {
     ui->room_btn->setEnabled(true);
 }
 
+void main_window::received_login_request()
+{
+    this->show();
+}
+
 //switches pages when user clicks
 void main_window::on_booking_btn_clicked()
 {

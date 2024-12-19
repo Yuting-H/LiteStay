@@ -18,4 +18,12 @@ This project is a submission to my CS3307 final.
 2. Enter _admin_ into username and an empty password to log in as a adminstrator.
    Or type _defaultuser_ and an empty password to log in as a user with restricted priveilege.
    These accounts will be recreated if you were to delete them in the program
-3. create, modify or delete booking, room and employee records as you please
+3. To add a booking, go to add booking tab. Select the booking start date and end date,
+   click find avaliable room which shows which room is unbooked during those dates. Click on
+   the desired room, enter guest names and click add booking.
+4. To add or delete a room or employee record. Make sure you are logged in as an admin
+   (see step 2 if u did )
+
+## Next steps for this project
+
+There are quite a number of
