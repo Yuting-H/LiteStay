@@ -10,7 +10,12 @@ void staff_query::reset_sql_command()
     this->qb.reset_command();
 }
 
-
+/*!
+ * \brief checks if the supplied username and password matches a record of a staff in the database
+ * \param username
+ * \param password
+ * \return
+ */
 bool staff_query::valid_login_info(QString username, QString password){
 
     qb.reset_command();

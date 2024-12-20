@@ -13,11 +13,18 @@ QString booking_query::get_sql_command()
 
 }
 
+/*!
+ * \brief booking_query::reset_sql_command
+ */
 void booking_query::reset_sql_command()
 {
     qb.reset_command();
 }
 
+/*!
+ * \brief booking_query::read_booking
+ * \return A QSqlQuery of all the booking records
+ */
 QSqlQuery booking_query::read_booking()
 {
     qb.reset_command();
@@ -28,6 +35,9 @@ QSqlQuery booking_query::read_booking()
     return qb.read();
 }
 
+/*!
+ * \brief generate a sql query that adds a booking
+ */
 void booking_query::add_booking(QString ischeckedin, QString roomid, QString guest_first_name, QString guest_last_name, QString start_date, QString end_date)
 {
     qb.reset_command();
@@ -45,6 +55,10 @@ void booking_query::add_booking(QString ischeckedin, QString roomid, QString gue
     qb.print_query();
 }
 
+/*!
+ * \brief booking_query::delete_booking
+ * \param bookid
+ */
 void booking_query::delete_booking(QString bookid)
 {
 
@@ -57,6 +71,10 @@ void booking_query::delete_booking(QString bookid)
     qb.read();
 }
 
+/*!
+ * \brief flips the checkedin status of a booking from 0 to a 1, or from 1 to a 0
+ * \param bookid
+ */
 void booking_query::flip_checkin(QString bookid)
 {
     qb.reset_command();
@@ -84,16 +102,13 @@ void booking_query::flip_checkin(QString bookid)
 
 }
 
-//delete this in prod
-void booking_query::test() {
-    qb.reset_command();
-    qb.set_action_read();
-    qb.add_column("room.roomid");
-    qb.add_table("room, booking");
 
-    qb.print_query();
-}
-
+/*!
+ * \brief finds rooms without a booking associated to it during a time frame
+ * \param startdate
+ * \param enddate
+ * \return
+ */
 QSqlQuery booking_query::find_avaliable_room(QString startdate, QString enddate)
 {
     qb.reset_command();

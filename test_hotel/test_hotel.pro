@@ -7,5 +7,10 @@ CONFIG += thread
 CONFIG -= qt
 
 SOURCES += \
+        ../tst_database.cpp \
         main.cpp \
-        tst_test_hotel.cpp
+        mockdatabase.cpp \
+        tst_login_window.cpp
+
+HEADERS += \
+    mockdatabase.h

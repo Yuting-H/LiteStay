@@ -17,9 +17,6 @@ public:
     void delete_booking(QString bookid);
     void flip_checkin(QString bookid);
     QSqlQuery find_avaliable_room(QString startdate, QString enddate);
-
-
-    void test();
 };
 
 #endif // BOOKING_QUERY_H
